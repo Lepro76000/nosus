@@ -16,6 +16,7 @@
       justify-content: center;
       align-items: center;
       color: #fff;
+      position: relative;
     }
 
     .container {
@@ -66,6 +67,17 @@
       min-height: 40px;
       font-weight: 500;
     }
+
+    .visits {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      font-size: 14px;
+      opacity: 0.7;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -77,7 +89,15 @@
     <div id="loading" class="loading"></div>
   </div>
 
+  <div class="visits" id="visitCount">Visites : 0</div>
+
   <script>
+    // compteur de visites local
+    let visits = localStorage.getItem('visitCount') || 0;
+    visits++;
+    localStorage.setItem('visitCount', visits);
+    document.getElementById("visitCount").textContent = "Visites : " + visits;
+
     const btn = document.getElementById("generateBtn");
     const loading = document.getElementById("loading");
 
@@ -108,8 +128,7 @@
         if (i === steps.length) {
           clearInterval(interval);
           setTimeout(() => {
-            // Redirection vers un Rickroll (blague)
-            window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
+            window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0"; // Rickroll
           }, 2000);
         }
       }, 1500);
@@ -117,3 +136,4 @@
   </script>
 </body>
 </html>
+
